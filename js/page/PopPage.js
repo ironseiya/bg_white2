@@ -17,27 +17,16 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class WelcomePage extends Component<Props> {
-
-    componentDidMount() {
-        this.timer = setTimeout(() => {
-            NavigationUtil.resetToHomePage({
-                navigation: this.props.navigation
-            })
-        }, 200)
-    }
-
-    componentWillUnmount() {
-        this.timer && clearTimeout(this.timer)
-    }
-
-    componentWillMount() {
-        this.timer && clearTimeout(this.timer)
-    }
+export default class PopPage extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-               <Text style={styles.welcome}>WelcomePage</Text>
+                <Text style={styles.welcome}>PopPage</Text>
+                <Text onPress={()=>{
+                    NavigationUtil.goPage({
+                        navigation: this.props.navigation
+                    },"DetailPage")
+                }}>跳转到详情页</Text>
             </View>
         );
     }

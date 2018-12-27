@@ -28,7 +28,7 @@ const MainNavigator = createStackNavigator({
     DetailPage: {
         screen:DetailPage,
         navigationOptions: {
-            header:null, //全屏显示
+            // header:null, //全屏显示
         }
     },
 })

@@ -35,7 +35,9 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
-
+android/
+ios/
+build.gradle
 # BUCK
 buck-out/
 \.buckd/

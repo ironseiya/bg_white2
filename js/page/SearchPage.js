@@ -8,7 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import NavigationUtil from '../navigator/NavigationUtil'
+import {
+    createMaterialTopTabNavigator,
+} from 'react-navigation'
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
     android:
@@ -17,27 +19,36 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class WelcomePage extends Component<Props> {
-
-    componentDidMount() {
-        this.timer = setTimeout(() => {
-            NavigationUtil.resetToHomePage({
-                navigation: this.props.navigation
-            })
-        }, 200)
-    }
-
-    componentWillUnmount() {
-        this.timer && clearTimeout(this.timer)
-    }
-
-    componentWillMount() {
-        this.timer && clearTimeout(this.timer)
-    }
+export default class SearchPage extends Component<Props> {
     render() {
+
+        const TabNavigator = createMaterialTopTabNavigator({
+            SalaryTab1:{
+                screen:SalaryTab,
+                navigationOptions:{
+                    title:'工资查询'
+                }
+            },
+            SalaryTab2:{
+                screen:SalaryTab,
+                navigationOptions:{
+                    title:'公积金查询'
+                }
+            },
+        })
+        return <View style={{flex: 1,marginTop: 30}}>
+            <TabNavigator/>
+        </View>;
+    }
+}
+
+class SalaryTab extends Component<Props> {
+    render() {
+
+        const {tabLabel} = this.props
         return (
             <View style={styles.container}>
-               <Text style={styles.welcome}>WelcomePage</Text>
+                <Text style={styles.welcome}>{tabLabel}</Text>
             </View>
         );
     }
